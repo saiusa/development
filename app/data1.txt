@@ -1,0 +1,7 @@
+{
+  "first_name": "Sai",
+  "last_name": "Usa",
+  "email": "sai.usa@urios.edu.ph",
+  "phone_number": "1234567890",
+  "address": "Butuan"
+}
