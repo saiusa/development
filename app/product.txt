@@ -1,0 +1,6 @@
+{
+  "name": "Kim Seokjin",
+  "description": "JinHit Entertainment",
+  "price": 70.77,
+  "stock": 70
+}
