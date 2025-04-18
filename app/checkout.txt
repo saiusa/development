@@ -1,4 +1,6 @@
 {
-  "cart": [1],
-  "total_price": 70.77
+    "cart_id": 1,
+    "customer_name": "Sai Usa",
+    "customer_email": "sai.usa@urios.edu.ph",
+    "customer_address": "Butuan City"
 }

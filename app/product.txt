@@ -1,6 +1,7 @@
 {
-  "name": "Kim Seokjin",
-  "description": "JinHit Entertainment",
-  "price": 70.77,
-  "stock": 70
+    "name": "V (BTS) 'Layover' LP",
+    "description": "Layover is the debut studio album by South Korean singer V of BTS. It was released on September 8, 2023, by Big Hit Music. The record has been described as a pop, R&B and jazz album led by soulful tones of V's voice",
+    "price": 40.92,
+    "stock": 70,
+    "image": "https://cdn-contents.weverseshop.io/public/shop/83a0ab018467857b29fd22143adef566.png?w=720&q=95"
 }

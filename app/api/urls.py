@@ -1,6 +1,5 @@
 from django.urls import path, include
 from .views import Students 
-
 from .views import ContactListView
 from .views import ContactUpdateDetailView 
 

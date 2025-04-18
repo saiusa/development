@@ -31,6 +31,19 @@ ALLOWED_HOSTS = ['*']
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:2004"
+]
+
+CORS_ALLOW_METHODS = [
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS"
+]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -99,12 +112,14 @@ DATABASES = {
 
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bangtanv_db1',
+        'NAME': 'bangtanv_db2',
         'USER': 'bangtanv',
         'PASSWORD': 'LeslerO7',
         'HOST': 'localhost',
         'PORT': '3306',
     },
+
+
 }
 
 # Password validation
