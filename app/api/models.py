@@ -1,4 +1,6 @@
 from django.db import models
+from .exam_models import Chat
+from .store_models import Products, CartItem, Payment
 
 # Create your models here.
 
