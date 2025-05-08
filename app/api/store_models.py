@@ -3,7 +3,7 @@ from django.db import models
 class Products(models.Model):
     name = models.CharField(max_length=100, default="Unnamed Product")  # <-- added default
     description = models.TextField()
-    product_image = models.ImageField(upload_to='images/', null=True, blank=True)
+    product_image = models.ImageField(upload_to='product_images/', null=True, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.PositiveIntegerField()
     created_at = models.DateTimeField(auto_now_add=True)

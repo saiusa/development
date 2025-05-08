@@ -28,11 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 CORS_ALLOW_ALL_ORIGINS = True
-"http://127.0.0.1:5500"
-"http://172.17.100.14:3329"
-"http://0.0.0.0:8017"
-
-
 # CORS settings
 CORS_ALLOW_METHODS = ['DELETE', 'GET', 'PATCH', 'POST', 'PUT']
 # Application definition
@@ -148,7 +143,7 @@ STATIC_URL = 'static/'
 MEDIA_URL = '/usa2/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'static'),   
 )
 
 # Default primary key field type

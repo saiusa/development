@@ -11,8 +11,8 @@ class ProductSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         if instance.product_image:
-            # Manually construct the URL with the port (if necessary, otherwise leave it to Django's default behavior)
-            base_url = "http://172.17.100.14:3329"
+            # Manually construct the URL with the port
+            base_url = "http://172.17.100.14:3342"
             relative_url = instance.product_image.url
             representation['product_image'] = f"{base_url}{relative_url}"
         else:
@@ -22,7 +22,7 @@ class ProductSerializer(serializers.ModelSerializer):
 class CartItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = CartItem
-        fields = ['id', 'product', 'quantity', 'created_at']  # Assuming CartItem references a Product, using 'product'
+        fields = ['id', 'name', 'description', 'product_image', 'price', 'stock', 'created_at']
         read_only_fields = ['created_at']
 
     def validate(self, data):
@@ -34,23 +34,28 @@ class CartItemSerializer(serializers.ModelSerializer):
         except Products.DoesNotExist:
             raise serializers.ValidationError(f"Product with ID {product_id} does not exist")
 
-        # Ensure CartItem has proper data
-        cart_item = data.get('product')
-        if cart_item:
-            if cart_item.name != product.name:
-                raise serializers.ValidationError("Product name does not match")
-            if cart_item.description != product.description:
-                raise serializers.ValidationError("Product description does not match")
-            if cart_item.price != product.price:
-                raise serializers.ValidationError("Product price does not match")
-            if cart_item.stock < 1:
-                raise serializers.ValidationError(f"Product {product.name} is out of stock")
+        if data['name'] != product.name:
+            raise serializers.ValidationError("Name does not match the product")
+        if data['description'] != product.description:
+            raise serializers.ValidationError("Description does not match the product")
+        if data['price'] != product.price:
+            raise serializers.ValidationError("Price does not match the product")
+        if data['stock'] != product.stock:
+            raise serializers.ValidationError("Stock does not match the product")
+
+        if product.stock < 1:
+            raise serializers.ValidationError(f"Product {product.name} is out of stock")
 
         return data
 
-    def validate_quantity(self, value):
+    def validate_price(self, value):
         if value <= 0:
-            raise serializers.ValidationError("Quantity must be a positive integer")
+            raise serializers.ValidationError("Price must be positive")
+        return value
+
+    def validate_stock(self, value):
+        if value < 0:
+            raise serializers.ValidationError("Stock must be a non-negative integer")
         return value
 
 class PaymentSerializer(serializers.ModelSerializer):
@@ -63,12 +68,12 @@ class PaymentSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         if instance.receipt_image:
-            # Manually construct the URL for receipt image (you can adjust this as per your requirements)
-            base_url = "http://172.17.100.14:3329"
-            relative_url = instance.receipt_image.url  # Correct the field name
+            # Manually construct the URL with the port
+            base_url = "http://172.17.100.14:3342"
+            relative_url = instance.receipt_image.url
             representation['receipt_image'] = f"{base_url}{relative_url}"
         else:
-            representation['receipt_image'] = None
+            representation['recceipt_image'] = None
         return representation
 
     def validate_products(self, value):
